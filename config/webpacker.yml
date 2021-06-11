@@ -8,6 +8,9 @@ default: &default
   cache_path: tmp/cache/webpacker
   webpack_compile_output: true
 
+  # PWA configuration
+  service_workers_entry_path: service_workers
+
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
   additional_paths: []
