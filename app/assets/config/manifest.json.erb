@@ -2,7 +2,11 @@
   "background_color": "white",
   "description": "Le Wagon is Europe's best coding bootcamp for creative people & entrepreneurs. Learn to code in 9 weeks with our fullstack coding bootcamp.",
   "display": "fullscreen",
-  "name": "PWA test",
+  "name": "site de test pour la PWA",
+  "short_name": "PWA",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "white",
   "icons": [
     <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
     <% files.each_with_index do |file, index| %>
