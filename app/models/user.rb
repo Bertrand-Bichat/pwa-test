@@ -12,7 +12,7 @@ class User < ApplicationRecord
       user.provider = auth.provider
       user.uid = auth.uid
       user.full_name = auth.info.name   # assuming the user model has a name
-      # user.photo = auth.info.image # assuming the user model has an image
+      user.avatar_url = auth.info.image # assuming the user model has an avatar_url
       # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!

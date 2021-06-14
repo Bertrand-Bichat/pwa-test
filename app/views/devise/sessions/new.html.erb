@@ -1,11 +1,15 @@
 <div class="container">
+  <h1 class="text-center mt-5">Login</h1>
 
-  <div class="border p-5 my-5">
-    <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, method: :post, class: "btn btn-primary" %>
+  <div class="border p-5 my-5 border">
+    <h2 class="text-center">Social connexion</h2>
+    <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "btn btn-google border border-dark px-5 py-2" do %>
+      <%= image_tag('google.png', width: 30, height: 30, class: "mr-3") %> GOOGLE
+    <% end %>
   </div>
 
-  <div class="border p-5">
-    <h2>Log in</h2>
+  <div class="border p-5 mb-5">
+    <h2 class="text-center">Manual connexion</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
