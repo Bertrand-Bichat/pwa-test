@@ -8,33 +8,19 @@
     <%= link_to 'New Post', new_post_path, class: "btn btn-primary mb-5 mt-3" %>
   </h1>
 
-  <div class="row">
-    <div class="col"></div>
-
-    <table class="table table-hover table-responsive text-center border border-dark col-12 p-3">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Content</th>
-          <th scope="col">Date</th>
-          <th scope="col" colspan="3">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @posts.each do |post| %>
-          <tr>
-            <td><%= post.title %></td>
-            <td><%= post.content %></td>
-            <td><%= post.created_at.to_date.strftime("%d/%m/%Y") %></td>
-            <td><%= link_to 'Show', post_path(post), class: "btn btn-primary" %></td>
-            <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-primary" %></td>
-            <td><%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <div class="col"></div>
+  <div class="row text-center">
+    <% @posts.each do |post| %>
+      <div class="col-12 col-md-6 col-lg-4 border p-3 mb-3">
+        <h2><%= post.title %></h2>
+        <b><%= post.created_at.to_date.strftime("%d/%m/%Y") %></b>
+        <br>
+        <%= post.content %>
+        <br>
+        <%= link_to 'Show', post_path(post), class: "btn btn-primary" %>
+        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-primary" %>
+        <%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
 
 </div>
