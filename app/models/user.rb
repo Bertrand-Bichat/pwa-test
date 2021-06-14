@@ -5,8 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
-  def self.from_google(email:, full_name:, uid:, avatar_url:)
-    # return nil unless email =~ /@mybusiness.com\z/
-    create_with(uid: uid, full_name: full_name, avatar_url: avatar_url).find_or_create_by!(email: email)
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.full_name = auth.info.name   # assuming the user model has a name
+      # user.photo = auth.info.image # assuming the user model has an image
+      # If you are using confirmable and the provider(s) you use validate emails,
+      # uncomment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
+    end
   end
 end

@@ -45,7 +45,9 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 
 # Omniauth
+# gem 'omniauth', '~> 1.6', '>= 1.6.1'
 gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-google-oauth2'
 
 group :development, :test do  gem 'pry-byebug'
