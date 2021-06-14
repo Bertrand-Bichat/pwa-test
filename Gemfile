@@ -49,6 +49,7 @@ gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem "omniauth-linkedin-oauth2"
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
