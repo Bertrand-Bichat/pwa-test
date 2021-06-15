@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :confidentialite, :cgu]
+  skip_before_action :authenticate_user!, only: [:home, :confidentialite, :cgu, :offline]
 
   def home
   end
@@ -8,5 +8,9 @@ class PagesController < ApplicationController
   end
 
   def cgu
+  end
+
+  def offline
+    render 'offline', layout: false
   end
 end

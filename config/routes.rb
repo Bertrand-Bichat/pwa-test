@@ -11,4 +11,5 @@ Rails.application.routes.draw do
 
   get '/cgu', to: 'pages#cgu', as: :cgu
   get '/confidentialite', to: 'pages#confidentialite', as: :confidentialite
+  get 'offline', to: 'pages#offline', as: :offline
 end
