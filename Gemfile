@@ -51,6 +51,9 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem "omniauth-linkedin-oauth2"
 
+# PWA push
+gem 'webpush'
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
