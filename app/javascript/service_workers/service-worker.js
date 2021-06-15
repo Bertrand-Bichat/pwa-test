@@ -1,6 +1,7 @@
 const OFFLINE_VERSION = 1;
 const CACHE_NAME = 'offline';
 const OFFLINE_URL = 'offline';
+const OFFLINE_IMG = '/packs/media/images/apple-icon.png';
 
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -24,6 +25,7 @@ self.addEventListener('install', function(event) {
     // Setting {cache: 'reload'} in the new request will ensure that the response
     // isn't fulfilled from the HTTP cache; i.e., it will be from the network.
     await cache.add(new Request(OFFLINE_URL, {cache: 'reload'}));
+    await cache.add(new Request(OFFLINE_IMG, {cache: 'reload'}));
   })());
 });
 
