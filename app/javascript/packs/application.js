@@ -16,6 +16,12 @@ window.addEventListener('load', () => {
       serviceWorker = registration.active;
       console.log('Service worker active.');
     }
+
+    window.Notification.requestPermission().then(permission => {
+      if(permission !== 'granted'){
+        throw new Error('Permission not granted for Notification');
+      }
+    });
   }).catch(registrationError => {
     console.log('Service worker registration failed: ', registrationError);
   });
@@ -26,3 +32,4 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
 });
+
