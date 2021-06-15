@@ -29,6 +29,14 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('activate', async function(event) {
   console.log('Service Worker activated.');
+  event.waitUntil((async () => {
+    // Enable navigation preload if it's supported.
+    // See https://developers.google.com/web/updates/2017/02/navigation-preload
+    if ('navigationPreload' in self.registration) {
+      await self.registration.navigationPreload.enable();
+    }
+  })());
+
   try {
     const applicationServerKey = urlB64ToUint8Array('BFgNy9z6O_B5LxAmv3_FnqAStgroVts0YqVt5UAF0et5rBmV2NipL_LeZdL2VpEM3NsppDKzpGwTblSTNaAtCoM')
     const options = { applicationServerKey, userVisibleOnly: true }
@@ -37,13 +45,6 @@ self.addEventListener('activate', async function(event) {
   } catch (err) {
     console.log('Error', err)
   }
-  event.waitUntil((async () => {
-    // Enable navigation preload if it's supported.
-    // See https://developers.google.com/web/updates/2017/02/navigation-preload
-    if ('navigationPreload' in self.registration) {
-      await self.registration.navigationPreload.enable();
-    }
-  })());
 
   // Tell the active service worker to take control of the page immediately.
   self.clients.claim();
