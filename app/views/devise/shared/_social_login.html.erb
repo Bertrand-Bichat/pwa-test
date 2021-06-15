@@ -1,11 +1,17 @@
-<div class="border p-5 my-5 border">
-  <h2 class="text-left mb-5">Social connexion</h2>
-  <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "btn btn-google px-5 py-2" do %>
-    <%= image_tag('google.png', width: 30, height: 30, class: "mr-3") %> GOOGLE
-  <% end %>
-  <%= link_to user_facebook_omniauth_authorize_path, method: :post, class: "btn btn-facebook px-5 py-2" do %>
-    <%= image_tag('facebook.jpg', width: 40, height: 40, class: "mr-3") %> FACEBOOK
-  <% end %>
+<div class="border p-5 my-5 w-100">
+  <h2 class="text-center text-md-left mb-5">Social connexion</h2>
+  <div class="row w-100">
+    <div class="col-12 col-md-6">
+      <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "btn btn-google px-5 py-2" do %>
+        <%= image_tag('google.png', width: 30, height: 30, class: "mr-3") %> GOOGLE
+      <% end %>
+    </div>
+    <div class="col-12 col-md-6 mt-3 mt-md-0">
+      <%= link_to user_facebook_omniauth_authorize_path, method: :post, class: "btn btn-facebook px-5 py-2" do %>
+        <%= image_tag('facebook.jpg', width: 40, height: 40, class: "mr-3") %> FACEBOOK
+      <% end %>
+    </div>
+  </div>
   <%= link_to user_linkedin_omniauth_authorize_path, method: :post, class: "btn btn-linkedin px-5 py-2 hidden" do %>
     <%= image_tag('linkedin.png', width: 30, height: 30, class: "mr-3") %> LINKEDIN
   <% end %>
