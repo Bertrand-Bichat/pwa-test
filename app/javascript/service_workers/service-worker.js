@@ -85,9 +85,9 @@ self.addEventListener('push', function(event) {
 
   const title = 'A nice title';
   const options = {
-    body: event.data.text(),
-    icon: 'images/apple-icon.png',
-    badge: 'images/apple-icon.png'
+    body: event.data.text()
+    // icon: 'images/apple-icon.png',
+    // badge: 'images/apple-icon.png'
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
