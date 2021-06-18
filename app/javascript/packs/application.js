@@ -1,6 +1,7 @@
 // External imports
 import "bootstrap";
 
+
 window.addEventListener('load', () => {
   navigator.serviceWorker.register('/service-worker.js').then(registration => {
     console.log('ServiceWorker registered: ', registration);
@@ -26,6 +27,12 @@ window.addEventListener('load', () => {
     console.log('Service worker registration failed: ', registrationError);
   });
 });
+
+// force to relaod the page when internet connexion is offline to render the offline page in cache
+window.addEventListener('offline', () => {
+  window.location.reload();
+});
+
 
 
 document.addEventListener('turbolinks:load', () => {

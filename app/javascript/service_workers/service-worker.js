@@ -26,7 +26,6 @@ self.addEventListener('install', function(event) {
     await Promise.all([OFFLINE_URL, OFFLINE_IMG].map((path) => {
       cache.add(new Request(path, {cache: 'reload'}));
     }));
-    // await cache.add(new Request(OFFLINE_IMG, {cache: 'reload'}));
   })());
 });
 
