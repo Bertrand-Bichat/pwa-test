@@ -1,7 +1,7 @@
 const OFFLINE_VERSION = 1;
 const CACHE_NAME = 'offline';
 const OFFLINE_URL = 'offline';
-// const OFFLINE_IMG = 'assets/apple-icon.png';
+const OFFLINE_IMG = 'assets/apple-icon.png';
 
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
@@ -18,17 +18,22 @@ function urlB64ToUint8Array(base64String) {
 
 self.addEventListener('install', function(event) {
   console.log('Service Worker installing.');
+  self.skipWaiting();
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
     // Setting {cache: 'reload'} in the new request will ensure that the response
     // isn't fulfilled from the HTTP cache; i.e., it will be from the network.
-    await cache.add(new Request(OFFLINE_URL, {cache: 'reload'}));
+    await Promise.all([OFFLINE_URL, OFFLINE_IMG].map((path) => {
+      cache.add(new Request(path, {cache: 'reload'}));
+    }));
     // await cache.add(new Request(OFFLINE_IMG, {cache: 'reload'}));
   })());
 });
 
 self.addEventListener('activate', async function() {
   console.log('Service Worker activated.');
+  // // Tell the active service worker to take control of the page immediately.
+  self.clients.claim();
 
   try {
     const applicationServerKey = urlB64ToUint8Array('BJ64lCDXDOfMMbWVi9WhGfAzxte8KAOjqmWrbeGMvqVVpDkT0EsX6dWe1ordi9DD62hgyYLWcyORwmmPuyBLUag')
@@ -46,9 +51,6 @@ self.addEventListener('activate', async function() {
   //     await self.registration.navigationPreload.enable();
   //   }
   // })());
-
-  // // Tell the active service worker to take control of the page immediately.
-  // self.clients.claim();
 });
 
 self.addEventListener('fetch', function(event) {
