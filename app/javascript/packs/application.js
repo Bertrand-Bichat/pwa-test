@@ -1,5 +1,7 @@
 // External imports
 import "bootstrap";
+// Internal imports
+import askPushNotifications from '../plugins/push_notifications';
 
 
 window.addEventListener('load', () => {
@@ -18,15 +20,11 @@ window.addEventListener('load', () => {
       console.log('Service worker active.');
     }
 
-    window.Notification.requestPermission().then(permission => {
-      if(permission !== 'granted'){
-        throw new Error('Permission not granted for Notification');
-      }
-    });
   }).catch(registrationError => {
     console.log('Service worker registration failed: ', registrationError);
   });
 });
+
 
 // force to relaod the page when internet connexion is offline to render the offline page in cache
 window.addEventListener('offline', () => {
@@ -36,7 +34,5 @@ window.addEventListener('offline', () => {
 
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  askPushNotifications();
 });
-
