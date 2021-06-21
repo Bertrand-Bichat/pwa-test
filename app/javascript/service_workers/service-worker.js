@@ -1,7 +1,7 @@
 const OFFLINE_VERSION = 1;
 const CACHE_NAME = 'offline';
 const OFFLINE_URL = 'offline';
-const OFFLINE_IMG = 'assets/apple-icon.png';
+const OFFLINE_IMG = 'apple-icon.png';
 
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
