@@ -1,5 +1,5 @@
 const OFFLINE_VERSION = 1;
-const CACHE_NAME = 'offline V5';
+const CACHE_NAME = `offline V${OFFLINE_VERSION}`;
 const OFFLINE_URL = 'offline';
 const OFFLINE_IMG = 'apple-icon.png';
 
@@ -97,11 +97,10 @@ self.addEventListener('push', function(event) {
   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
   const title = 'Notification from PWA-test app';
-  const body = event.data.text();
   const options = {
-    body
-    // icon: 'images/apple-icon.png',
-    // badge: 'images/apple-icon.png'
+    body: event.data.text(),
+    icon: OFFLINE_IMG,
+    badge: OFFLINE_IMG
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
