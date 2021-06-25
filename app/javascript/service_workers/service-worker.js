@@ -1,5 +1,5 @@
 const OFFLINE_VERSION = 1;
-const CACHE_NAME = 'offline';
+const CACHE_NAME = 'offline V5';
 const OFFLINE_URL = 'offline';
 const OFFLINE_IMG = 'apple-icon.png';
 
@@ -29,10 +29,31 @@ self.addEventListener('install', function(event) {
   })());
 });
 
-self.addEventListener('activate', async function() {
+self.addEventListener('activate', async function(event) {
   console.log('Service Worker activated.');
+
   // // Tell the active service worker to take control of the page immediately.
   self.clients.claim();
+
+  let cacheWhitelist = [CACHE_NAME];
+  event.waitUntil((async () => {
+    // Enable navigation preload if it's supported.
+    // See https://developers.google.com/web/updates/2017/02/navigation-preload
+    if ('navigationPreload' in self.registration) {
+      await self.registration.navigationPreload.enable();
+    }
+
+    // Delete old versions of CACHE_NAME
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  })());
 
   try {
     const applicationServerKey = urlB64ToUint8Array('BJ64lCDXDOfMMbWVi9WhGfAzxte8KAOjqmWrbeGMvqVVpDkT0EsX6dWe1ordi9DD62hgyYLWcyORwmmPuyBLUag')
@@ -42,14 +63,6 @@ self.addEventListener('activate', async function() {
   } catch (err) {
     console.log('Error', err)
   }
-
-  // event.waitUntil((async () => {
-  //   // Enable navigation preload if it's supported.
-  //   // See https://developers.google.com/web/updates/2017/02/navigation-preload
-  //   if ('navigationPreload' in self.registration) {
-  //     await self.registration.navigationPreload.enable();
-  //   }
-  // })());
 });
 
 self.addEventListener('fetch', function(event) {
