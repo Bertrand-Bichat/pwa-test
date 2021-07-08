@@ -1,5 +1,11 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :confidentialite, :cgu, :offline]
+  skip_before_action :authenticate_user!, only: [
+    :home,
+    :confidentialite,
+    :cgu,
+    :offline,
+    :qr_code
+  ]
 
   def home
   end
@@ -12,5 +18,8 @@ class PagesController < ApplicationController
 
   def offline
     render 'offline', layout: false
+  end
+
+  def qr_code
   end
 end

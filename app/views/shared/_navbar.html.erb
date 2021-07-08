@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon border-bottom border-dark">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png", alt: "logo", aria: { label: "logo - page d'accueil" } %>
     <% end %>
@@ -11,7 +11,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active" id="push-permission">
-        <%= link_to "Receive push notifications", "#", class: "nav-link btn btn-primary text-white mr-md-5 mb-3 hidden" %>
+        <%= link_to "Receive push notifications", "#", class: "nav-link btn btn-primary text-white mr-md-5 mb-2 hidden" %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to "Mobile App", qr_code_path, class: "nav-link btn btn-primary text-white mr-md-5 mb-2" %>
       </li>
       <% if user_signed_in? %>
         <li class="nav-item active">
