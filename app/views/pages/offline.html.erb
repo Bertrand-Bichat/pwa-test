@@ -1,0 +1,31 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+      body {
+        background-color: #00a4cd;
+        color: #ffffff;
+        padding: 4rem 2rem;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .container {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container text-center">
+      <img src="/apple-icon.png" alt="logo">
+      <h1>You need a working internet connection to use this website</h1>
+      <p>Offline mode is not supported yet</p>
+    </div>
+    <script>
+      window.addEventListener('online', () => {
+        window.location.reload();
+      });
+    </script>
+  </body>
+</html>

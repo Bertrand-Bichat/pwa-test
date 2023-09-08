@@ -1,0 +1,26 @@
+<div class="container">
+
+  <p id="notice"><%= notice %></p>
+
+  <h1 class="text-center mt-5">
+    Posts
+    <br>
+    <%= link_to 'New Post', new_post_path, class: "btn btn-primary mb-5 mt-3" %>
+  </h1>
+
+  <div class="row text-center">
+    <% @posts.each do |post| %>
+      <div class="col-12 col-md-6 col-lg-4 border p-3 mb-3">
+        <h2><%= post.title %></h2>
+        <b><%= post.created_at.to_date.strftime("%d/%m/%Y") %></b>
+        <br>
+        <%= post.content %>
+        <br>
+        <%= link_to 'Show', post_path(post), class: "btn btn-primary" %>
+        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-primary" %>
+        <%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
